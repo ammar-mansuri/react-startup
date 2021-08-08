@@ -5,11 +5,10 @@ import faker from 'faker'
 import ApprovalCard from './ApprovalCard';
 import MessageComponent from './MessgaeComponent';
 import Segment from './SegmentComponent';
-
+import SeasonDisplay from './SeasonDisplay';
+/*
 const App = () => {
-
     return (
-    
     <div className="ui container comments"> 
         <MessageComponent header="TU-CLAUSTHAL" text="MS-INFORMATIC"/>
         <ApprovalCard>
@@ -46,8 +45,45 @@ const App = () => {
                 Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
             </p>
         </Segment>
+
+        <SeasonDisplay/>
     </div>
     );
 }
+*/
 
+class App extends React.Component{
+    constructor(props){
+        super(props);
+
+        this.state = { lat : null, errorMessage:''};
+
+        window.navigator.geolocation.getCurrentPosition(
+                positions => {
+                    console.log(positions);
+                    this.setState({ lat: positions.coords.latitude});
+                },
+                err => {
+                    console.log(err)
+                    this.setState({ errorMessage: err.message});
+                }
+            );
+    }
+
+    render(){
+
+        if(this.state.lat && !this.state.errorMessage){
+            return <div> Latitude: {this.state.lat} </div>
+        }
+        
+        if(!this.state.lat && this.state.errorMessage){
+            return <div> ERROR: {this.state.errorMessage} </div>
+        }
+
+        return <div> Loading, please wait.... </div>
+        
+    }
+}
+
+    
 ReactDOM.render(<App/>,document.querySelector('#root'));
