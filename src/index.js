@@ -7,6 +7,8 @@ import MessageComponent from './MessgaeComponent';
 import Segment from './SegmentComponent';
 import SeasonDisplay from './SeasonDisplay';
 /*
+Functional Component
+
 const App = () => {
     return (
     <div className="ui container comments"> 
@@ -52,12 +54,19 @@ const App = () => {
 }
 */
 
+// Class Based Component Using States
 class App extends React.Component{
-    constructor(props){
+
+    //Initializing states using constructor
+    /*constructor(props){
         super(props);
-
         this.state = { lat : null, errorMessage:''};
+    }*/
 
+    state={lat:null,errorMessage:''};
+    
+    componentDidMount = () =>{
+        console.log('Component was rendered');
         window.navigator.geolocation.getCurrentPosition(
                 positions => {
                     console.log(positions);
@@ -69,11 +78,15 @@ class App extends React.Component{
                 }
             );
     }
+    
+    componentDidUpdate = () =>{
+        console.log('Component was updated and re-rendered');
+    }
 
     render(){
 
         if(this.state.lat && !this.state.errorMessage){
-            return <div> Latitude: {this.state.lat} </div>
+            return  <SeasonDisplay lat={this.state.lat}/>
         }
         
         if(!this.state.lat && this.state.errorMessage){
