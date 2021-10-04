@@ -9,10 +9,9 @@ import SeasonDisplay from './SeasonDisplay';
 import Loader from './loader';
 import './SeasonDisplay.css'
 
-/*
-Functional Component
 
-const App = () => {
+//Functional Component
+const AppFunctionalComponent = () => {
     return (
     <div className="ui container comments"> 
         <MessageComponent header="TU-CLAUSTHAL" text="MS-INFORMATIC"/>
@@ -55,10 +54,10 @@ const App = () => {
     </div>
     );
 }
-*/
+
 
 // Class Based Component Using States
-class App extends React.Component{
+class AppClassComponent extends React.Component{
 
     //Initializing states using constructor
     /*constructor(props){
@@ -107,5 +106,28 @@ class App extends React.Component{
     }
 }
 
+//Section 6 challenge
+class Clock extends React.Component {
+
+    state={time:new Date().toLocaleTimeString()};
+
+        componentDidMount() {
+            setInterval(() => {
+                this.setState({time: new Date().toLocaleTimeString()}); 
+            }, 1000)
+        }
+        
+        render() {
+            return (
+                <div>
+                    The time is: {this.state.time}
+                </div>
+            );
+        }
+    }
     
-ReactDOM.render(<App/>,document.querySelector('#root'));
+// ReactDOM.render(<AppFunctionalComponent/>,document.querySelector('#root'));
+
+// ReactDOM.render(<AppClassComponent/>,document.querySelector('#root'));
+
+//ReactDOM.render(<Clock/>,document.querySelector('#root'));
