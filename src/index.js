@@ -6,6 +6,9 @@ import ApprovalCard from './ApprovalCard';
 import MessageComponent from './MessgaeComponent';
 import Segment from './SegmentComponent';
 import SeasonDisplay from './SeasonDisplay';
+import Loader from './loader';
+import './SeasonDisplay.css'
+
 /*
 Functional Component
 
@@ -83,8 +86,7 @@ class App extends React.Component{
         console.log('Component was updated and re-rendered');
     }
 
-    render(){
-
+    renderContent=()=>{
         if(this.state.lat && !this.state.errorMessage){
             return  <SeasonDisplay lat={this.state.lat}/>
         }
@@ -93,8 +95,15 @@ class App extends React.Component{
             return <div> ERROR: {this.state.errorMessage} </div>
         }
 
-        return <div> Loading, please wait.... </div>
-        
+        return <Loader message="Please accept location request..."/>
+    }
+
+    render(){
+        return(
+            <div className="border red">
+                {this.renderContent()}
+            </div>
+        );
     }
 }
 
