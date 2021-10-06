@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
 import SearchBar from './SearchBar';
+import SearchBarStyles from '../css/SearchBarStyles.css'
 
-const App=()=>{
+class App extends React.Component{
+
+    onSearchSubmit=(inputText)=>{
+        console.log(inputText);
+    }
+
+    render=()=>{
     return(
-        <div>
-            <SearchBar/>
+        <div className="ui container searchHeader">
+            <SearchBar onUserSubmit={this.onSearchSubmit}/>
         </div>
     );
+    }
 }
 
 export default App;
