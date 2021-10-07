@@ -1,9 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import SearchBar from "./SearchBar";
 import SearchBarStyles from "../css/SearchBarStyles.css";
 import unsplashed from "../api/unsplashed";
-
+import ImageList from "./ImagelList";
 class App extends React.Component {
 
   state = {searchedImages:[]};
@@ -29,6 +28,7 @@ class App extends React.Component {
       <div className="ui container searchHeader">
         <SearchBar onUserSubmit={this.onSearchSubmit} />
         Found: {this.state.searchedImages.length} images
+        <ImageList images={this.state.searchedImages}/>
       </div>
     );
   };
