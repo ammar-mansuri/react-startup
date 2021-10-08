@@ -19,7 +19,7 @@ class App extends React.Component {
     const response = await unsplashed.get("https://api.unsplash.com/search/photos", {
         params: { query: inputText }
     })
-    console.log(response.data.results);
+    //console.log(response.data.results);
     this.setState({searchedImages:response.data.results});
   };
 
