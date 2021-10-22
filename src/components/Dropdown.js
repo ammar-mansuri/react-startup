@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useEffect, useState } from "react/cjs/react.development";
 import "../css/dropdown.css";
 
-const Dropdown=({menuOptions,selected,onSelectionChange})=>{
+const Dropdown=({menuOptions,selected,onSelectionChange,inputLabel})=>{
 
     const [dropdownControl,setDropDownControl]=useState(false);
     const ref=useRef();
@@ -41,14 +41,14 @@ const Dropdown=({menuOptions,selected,onSelectionChange})=>{
     return(
             <div ref={ref} className="ui form">
             <div className="field">
-                <label className="label">Select a Color</label>
+                <label className="label">{inputLabel}</label>
                 <div onClick={() => setDropDownControl(!dropdownControl)} className={`ui selection dropdown ${ dropdownControl ? 'visible active' : ''}`}>
                 <i className="dropdown icon"></i>
                 <div className="text">{selected.label}</div>
                 <div className={`menu ${ dropdownControl ? 'visible transition' : ''}`}>{menuRender}</div>
                 </div>
             </div>
-            <div className={`dropLabel ${selected.value}`}>{selected.label}</div>
+            {/* <div className={`dropLabel ${selected.value}`}>{selected.label}</div> */}
             </div>
             
     );
