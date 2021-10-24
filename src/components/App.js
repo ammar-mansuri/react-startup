@@ -2,8 +2,10 @@ import React from 'react';
 import { useState } from 'react/cjs/react.development';
 import Accordion from './Accordion';
 import Dropdown from './Dropdown';
+import Router from './Router';
 import Search from './Search';
 import Translate from './Translate';
+import Header from './Header';
 
 const items=[
 {
@@ -35,23 +37,26 @@ const dropDownMenu=[
     }
 ]
 
-const App=()=>{
-    
+export default ()=>{
     const [selectedDropDown,setSelectedDropDown]=useState(dropDownMenu[0]);
-    
     return(
         <div>
-            {/* <Accordion items={items}/> */}
+            <Header/>
+            <Router path="/">
+                <Accordion items={items}/>
+            </Router>
 
-            {/* <Search/> */}
-            
-            {/* <Dropdown menuOptions={dropDownMenu} selected={selectedDropDown} onSelectionChange={setSelectedDropDown} inputLabel="Select an Item"/> */}
+            <Router path="/search">
+                <Search/>
+            </Router>
 
-            <Translate/>
-            
+            <Router path="/dropdown">
+                <Dropdown menuOptions={dropDownMenu} selected={selectedDropDown} onSelectionChange={setSelectedDropDown} inputLabel="Select an Item"/>
+            </Router>
+
+            <Router path="/translate">
+                <Translate/>
+            </Router>
         </div>
     );
-    
 }
-
-export default App;
